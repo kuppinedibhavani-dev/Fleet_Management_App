@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin page</title>
+</head>
+<body>
+    <header class="navbar">
+        <div class="brand">Fleet Admin</div>
+        <div class="filters"aria-label="filters">
+            <label>
+                Category
+                <select id="filterCategory"title="Filter by category">
+                    <option value="all">All</option>
+                    <option value="auto">Auto</option>
+                    <option value="car">Car</option>
+                    <option value="truck">Truck</option>
+                    <option value="bus">Bus</option>
+                </select>
+            </label>
+            <label>
+                Availability
+                <select id="filterAvailability"title="Filter by Availability">
+                    <option value="all">All</option>
+                    <option value="available">Available</option>
+                    <option value="unavailable">Unavailable</option>
+                </select>
+            </label>
+            <button id="clearFilters"type="button"title="Clear filters">Clear Filters</button>
+        </div>
+    </header>
+    <div class="container">
+        <side class="sidebar"aria-label="add fleet form">
+            <h2>Add Fleet</h2>
+            <form id="fleetForm"onSubmit="return false;">
+                <label for="RegNoofVehicle">Reg No of Vehicle</label>
+                <input id="RegNoofVehicle"type="text"/>
+                <label for="category">Category</label>
+                <select id="category">
+                    <option value="auto">Auto</option>
+                    <option value="car">Car</option>
+                    <option value="truck">Truck</option>
+                    <option value="bus">Bus</option>
+                </select>
+                <label for="driver">Driver name</label>
+                <input id="driver"type="text"/>
+                <label>
+                    <input id="isAvailable"type="checkbox"/>Available
+                </label>
+                <button id="addFleet"type="button">Add Fleet</button>
+            </form>
+        </side>
+        <main class="main-content">
+            <div id="cardsContainer"class="grid"aria-live="polite"></div>
+        </main>
+    </div>
+</body>
+<script>
+    (function(){
+        const PLACEHOLDER_IMG="https://coding-platform.s3.amazonaws.com/dev/lms/tickets/5e80fcb6-3f8e-480c-945b-30a5359eb40e/JNmYjkVr3WOjsrbu.png";
+        const RegNoofVehicleEl=document.getElementById("RegNoofVehicle");
+        const categoryEl=document.getElementById("category");
+        const driverEl=document.getElementById("driver");
+        const availableEl=document.getElementById("isAvailable")
+        const addBtn=document.getElementById("addFleet");
+        const cardsContainer=document.getElementById("cardsContainer");
+        const filterCategory=document.getElementById("filterCategory");
+        const filterAvailability=document.getElementById("filterAvailabilty");
+        const clearFiltersBtn=document.getElementById("clearFilters");
+
+        let fleets=JSON.parse(localStorage.getitem("fleets:vl")||"[]");
+        function save(){
+            JSON.parse(localStorage.getItem("fleets:vl",JSON.stringify(fleets)));
+        }
+        function clearForm(){
+            RegNoofVehicleEl.value="";
+            categoryEl.value="auto";
+            driverEl.value="";
+            availableEl.checked=false;
+        }
+        function validateFleet(payload){
+            if(!payload.RegNoofVehicle||!payload.RegNoofVehicle.trim())
+            return "Reg No of Vehicle is required";
+         if(!payload.category||!payload.category.trim())
+            return "Category is required";
+        return null;
+        }
+        function escapeHtml(str){
+            if(!str)return"";
+            return String(str).replace();
+            return map[s];
+        }
+    });
+    function render(){
+        const catFilter=filterCategory
+    }
+</script>
+</html>
